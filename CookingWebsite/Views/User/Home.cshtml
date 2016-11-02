@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "User Page";
+}
+
+<h2>User</h2>
+
+<div class="content" id="content_communaute_details" ng-app="MyApp" ng-controller="UserController">
+
+        <div class="form-group" id="dv-form">
+            <table class="table" id="tbl-user">
+                <tr>
+                    <td>
+                        <span>Login</span>
+                    </td>
+                    <td>
+                        <input type="text" id="userLogin" required ng-model="Login" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Adresse mail</span>
+                    </td>
+                    <td>
+                        <input type="text" id="userEmail" required ng-model="Email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Recette
+                    </td>
+                    <td>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="r in Recipes">{{r.Name}}</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Password</span>
+                    </td>
+                    <td>
+                        <input type="password" id="userPassword" required ng-model="Password" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="dv-buttons">
+            <input class="btn" type="button" id="new" value="Nouveau" ng-click="clear()" />
+            <input class="btn" type="button" id="save" value="Enregistrer" ng-click="save()" />
+            @*<input type="button" id="delete" value="Supprimer" ng-click="delete()" />*@
+        </div>
+        <div id="dv-msg">{{Message}}</div>
+        <div class="table-responsive" id="dv-results">
+            <table class="table" id="tbl-results">
+                <thead>
+                    <tr>
+                        <th>Login</th>
+                        <th>Mail</th>
+                        <th>Recettes</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="u in Users">
+                    <tr>
+                        <td ng-click="get(u.IdUser)"> <span>{{u.Login}}</span></td>
+                        <td> <span>{{u.Email}}</span></td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li ng-repeat="r in u.Recipes">{{r.Name}}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

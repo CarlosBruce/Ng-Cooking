@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CookingDB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{4cbe19ee-7d47-4de9-a047-3dc6d8b456c7}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CookingDB</RootNamespace>
+    <AssemblyName>CookingDB</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="User.sql" />
+    <Build Include="Ingredient.sql" />
+    <Build Include="IngredientCategory.sql" />
+    <Build Include="RecipeCategory.sql" />
+    <Build Include="Recipe.sql" />
+    <Build Include="RecipeRate.sql" />
+    <Build Include="UserLevel.sql" />
+    <Build Include="RecipeIngredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_UPDATE_UserLevel.sql" />
+    <Build Include="dbo\Stored Procedures\PS_UPDATE_User.sql" />
+    <Build Include="dbo\Stored Procedures\PS_UPDATE_RecipeRate.sql" />
+    <Build Include="dbo\Stored Procedures\PS_UPDATE_RecipeIngredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_UPDATE_RecipeCategory.sql" />
+    <Build Include="dbo\Stored Procedures\PS_UPDATE_Recipe.sql" />
+    <Build Include="dbo\Stored Procedures\PS_UPDATE_IngredientCategory.sql" />
+    <Build Include="dbo\Stored Procedures\PS_UPDATE_Ingredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_UserLevel_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_UserLevel.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_User_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_User.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_RecipeRate_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_RecipeRate.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_RecipeIngredient_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_RecipeIngredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_RecipeCategory_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_RecipeCategory.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_Recipe_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_Recipe.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_IngredientCategory_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_IngredientCategory.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_Ingredient_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_Ingredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_RecipeRate_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_RecipeRate.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_RecipeIngredient_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_RecipeIngredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_Recipe_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_Recipe.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_Ingredient_BY_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_Ingredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_INSERT_UserLevel.sql" />
+    <Build Include="dbo\Stored Procedures\PS_INSERT_User.sql" />
+    <Build Include="dbo\Stored Procedures\PS_INSERT_RecipeRate.sql" />
+    <Build Include="dbo\Stored Procedures\PS_INSERT_RecipeIngredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_INSERT_RecipeCategory.sql" />
+    <Build Include="dbo\Stored Procedures\PS_INSERT_Recipe.sql" />
+    <Build Include="dbo\Stored Procedures\PS_INSERT_IngredientCategory.sql" />
+    <Build Include="dbo\Stored Procedures\PS_INSERT_Ingredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_UserLevel.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_User.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_RecipeRate.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_RecipeIngredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_RecipeCategory.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_Recipe.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_IngredientCategory.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_Ingredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_Recipes_BY_CategoryID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_RecipeRate_BY_User_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_Recipe_BY_User_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_Ingredient_BY_RecipeID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_Ingredient_BY_CategoryID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_RecipeIngredient_BY_Recipe_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_COMPLETE_RecipeIngredient_BY_Ingredient_ID.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_RecipeIngredient_By_IdRecipe.sql" />
+    <Build Include="dbo\Stored Procedures\PS_DELETE_RecipeIngredient_By_IdIngredient.sql" />
+    <Build Include="dbo\Stored Procedures\PS_SELECT_ALL_RecipeRate_BY_Recipe_ID.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CookingDB.refactorlog" />
+  </ItemGroup>
+</Project>

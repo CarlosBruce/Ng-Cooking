@@ -1,0 +1,4 @@
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Release\Cooking.Entities.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Release\Cooking.Entities.pdb
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\obj\Release\Cooking.Entities.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\obj\Release\Cooking.Entities.pdb

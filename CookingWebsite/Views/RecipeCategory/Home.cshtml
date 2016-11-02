@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Recipe Category Page";
+}
+
+<h2>Recipe Category</h2>
+
+<div id="dv-container" ng-app="MyApp" ng-controller="RecipeCategoryController">
+    <div class="form-group" id="dv-form">
+        <table class="table" id="tbl-ingredcat">
+            <tr>
+                <td>
+                    <span>Name</span>
+                </td>
+                <td>
+                    <input type="text" id="recipecatName" required ng-model="Name" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Recette de la Catégorie
+                </td>
+                <td>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="r in Recipes">{{r.Name}}</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="dv-buttons">
+        <input class="btn" type="button" id="new" value="Nouveau" ng-click="clear()" />
+        <input class="btn" type="button" id="save" value="Enregistrer" ng-click="save()" />
+        @*<input type="button" id="delete" value="Supprimer" ng-click="delete()" />*@
+    </div>
+    <div id="dv-msg">{{Message}}</div>
+    <div class="table-responsive" id="dv-results">
+        <table class="table" id="tbl-results">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Recettes</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="ic in RecipeCategories">
+                <tr>
+                    <td ng-click="get(ic)"> <span>{{ic.Name}}</span></td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="i in ic.Recipes">{{i.Name}}</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

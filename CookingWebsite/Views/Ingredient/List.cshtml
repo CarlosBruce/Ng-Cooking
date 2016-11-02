@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Liste des Ingredients";
+}
+
+    <div ng-app="MyApp" ng-controller="IngredientController" class="content" id="content_ingredients">
+        <h1 class="page-title">Les ingredients</h1>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel">
+                    <div class="row imgback">
+                        <div class="hidden-xs col-sm-3"></div>
+                        <div class="col-xs-12 col-sm-9 fp">
+                            <div class="filters">
+                                    <div class="filter">
+                                        <p><label for="">Nom de l'ingrédient</label></p>
+                                        <p><input type="text" ng-model="SelectedIngredient" placeholder="ex: Banane"></p>
+                                    </div>
+                                    <div class="filter">
+                                         <p><label for="">Catégorie</label></p>
+                                        <p>
+                                            <select ng-model="SelectedCatIngredient" ng-options="CatIngredientFilterOption.IdIngredientCategory as CatIngredientFilterOption.Name for CatIngredientFilterOption in IngredientCategories"></select>
+                                        </p>
+                                    </div>
+                                    <div class="filter">
+                                        <p><label for="">Nombre de calories <span class="fwn">(kcal/100g)</span></label></p>
+
+
+                                        <p>
+                                            <span class="span-label">entre :</span>
+                                            <input type="number" ng-model="MinCalSelectedIngredient" class="mr0" placeholder="ex: 70">
+                                            <span class="span-label">et</span>
+                                            <input type="number" ng-model="MaxCalSelectedIngredient" placeholder="ex: 220">
+                                        </p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="result">
+                    <div class="ingredients row"  ng-init="limit = 3" >
+                        <!--
+                        <p class=" col-xs-12 blank">Aucun ingrédient ne correspond à votre recherche</p>
+                        -->
+                        <div class="col-xs-12 ingredient"  ng-repeat="i in Ingredients 
+                             | filter: {'IdIngredientCategory': SelectedCatIngredient} 
+                             | filter: {'Name': SelectedIngredient} 
+                             | filter:byRange('Calories', MinCalSelectedIngredient, MaxCalSelectedIngredient)
+                             | limitTo: limit as results">
+                            <div class="ing-wrap">
+                                <div class="top">
+                                    <p class="name">{{i.Name}}</p>
+                                    <p class="category">{{i.IngredientCategory.Name}}</p>
+                                    <img class="img" src="{{i.UrlIngredientPicture}}" alt="{{i.Name}}">
+                                    <div class="calories-wrap">
+                                        <div class="val">
+                                            <span>{{i.Calories}} kcal</span>
+                                            <div class="battery">
+                                                <!-- pourcentage ci-dessous à moduler en fonction du nombre de calories de l'ingredient sur nombre de calories max -->
+                                                <div class="level" style="width:{{i.CaloriesValue}}%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bot">
+                                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo pariatur obcaecati ut, sit veniam molestias eius cum. Facere quibusdam laborum doloribus, incidunt omnis ipsum alias vel est molestiae.</p>
+                                    <div class="list">
+                                        <p class="list-title">Aliments similaires</p>
+                                        <ul> 
+                                            <li class="item"ng-repeat="is in Ingredients | filter: {'IdIngredientCategory': i.IdIngredientCategory}:true | filter: { 'IdIngredient': '!' + i.IdIngredient}">
+                                                <img class="item-img" width="50%" src="{{is.UrlIngredientPicture}}" alt="{{is.Name}}">
+                                                <p class="item-name" title="{{is.Name}}">{{is.Name}}</p>
+</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="row showmore">
+                    <div class="col-xs-12">
+                        <button type="button" ng-hide="results.length === items.length" 
+                        ng-click="limit = limit +3" class="btn btn_color1"><span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

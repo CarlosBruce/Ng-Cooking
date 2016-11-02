@@ -1,0 +1,11 @@
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Release\Cooking.Service.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Release\Cooking.Service.pdb
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Release\Cooking.Entities.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Release\Cooking.Repository.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Release\Dapper.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Release\Cooking.Entities.pdb
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Release\Cooking.Repository.pdb
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Release\Dapper.xml
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\obj\Release\Cooking.Service.csprojResolveAssemblyReference.cache
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\obj\Release\Cooking.Service.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\obj\Release\Cooking.Service.pdb

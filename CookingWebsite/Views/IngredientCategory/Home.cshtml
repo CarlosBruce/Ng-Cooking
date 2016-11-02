@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Ingredient Category Page";
+}
+
+<h2>Ingredient Category</h2>
+
+<div id="dv-container" ng-app="MyApp" ng-controller="IngredientCategoryController">
+    <div class="form-group" id="dv-form">
+        <table class="table" id="tbl-ingredcat">
+            <tr>
+                <td>
+                    <span>Name</span>
+                </td>
+                <td>
+                    <input type="text" id="ingredcatName" required ng-model="Name" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Description</span>
+                </td>
+                <td>
+                    <input type="text" id="ingredcatDescription" required ng-model="Description" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ingredient de la Catégorie
+                </td>
+                <td>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="r in Ingredients">{{r.Name}}</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="dv-buttons">
+        <input class="btn" type="button" id="new" value="Nouveau" ng-click="clear()" />
+        <input class="btn" type="button" id="save" value="Enregistrer" ng-click="save()" />
+        @*<input type="button" id="delete" value="Supprimer" ng-click="delete()" />*@
+    </div>
+    <div id="dv-msg">{{Message}}</div>
+    <div class="table-responsive" id="dv-results">
+        <table class="table" id="tbl-results">
+            <thead>
+                <tr>
+                    <th>Login</th>
+                    <th>Mail</th>
+                    <th>Ingredients</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="ic in IngredientCategories">
+                <tr>
+                    <td ng-click="get(ic)"> <span>{{ic.Name}}</span></td>
+                    <td> <span>{{ic.Description}}</span></td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="i in ic.Ingredients">{{i.Name}}</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingDB\bin\Release\CookingDB.dacpac
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingDB\bin\Release\CookingDB.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingDB\bin\Release\CookingDB.pdb
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingDB\obj\Release\Model.xml
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingDB\obj\Release\refactor.xml
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingDB\obj\Release\postdeploy.sql
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingDB\obj\Release\predeploy.sql
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingDB\obj\Release\CookingDB.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingDB\obj\Release\CookingDB.pdb

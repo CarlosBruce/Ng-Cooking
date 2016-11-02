@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Ingredients Page";
+}
+
+
+<div class="content" id="dv-container" ng-app="MyApp" ng-controller="IngredientController">
+    <h2>Ingredient</h2>
+    <div class="form-group" id="dv-form">
+        <table class="table" id="tbl-ingred">
+            <tr>
+                <td>
+                    <span>Name</span>
+                </td>
+                <td>
+                    <input type="text" id="ingredientName" required ng-model="Name" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Calories</span>
+                </td>
+                <td>
+                    <input type="text" id="ingredientCalories" required ng-model="Calories" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    IngredientCategory
+                </td>
+                <td>
+                    <select ng-model="IngredientCategory" >
+                        <option ng-repeat="item in IngredientCategories"
+                                value="{{item.IdIngredientCategory}}"
+                                title="{{item.Name}}"
+                                ng-selected="item.IdIngredientCategory == IdIngredientCategory"
+                                >
+                            {{item.Name}}
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    UrlIngredientPicture
+                </td>
+                <td>
+                    <input type="text" id="ingredientPicture" required ng-model="UrlIngredientPicture" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   Ingredient in  Recipes
+                </td>
+                <td>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="r in Recipes">{{r.Name}}</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="dv-buttons">
+        <input class="btn" type="button" id="new" value="Nouveau" ng-click="clear()" />
+        <input class="btn" type="button" id="save" value="Enregistrer" ng-click="save()" />
+        @*<input type="button" id="delete" value="Supprimer" ng-click="delete()" />*@
+    </div>
+    <div id="dv-msg">{{Message}}</div>
+    <div class="table-responsive" id="dv-results">
+        <table class="table" id="tbl-results">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Calories</th>
+                    <th>Category</th>
+                    <th>Include in recipes</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="i in Ingredients">
+                <tr>
+                    <td ng-click="get(i)"> <span>{{i.Name}}</span></td>
+                    <td> <span>{{i.Calories}}</span></td>
+                    <td> <span>{{i.IngredientCategory.Name}}</span></td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="r in i.Recipes">{{r.Name}}</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

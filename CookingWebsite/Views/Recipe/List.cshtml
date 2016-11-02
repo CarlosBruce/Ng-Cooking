@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Recettes";
+}
+
+<div class="content" id="content_recettes" ng-app="MyApp" ng-controller="RecipeController">
+    <h1 class="page-title">Les recettes</h1>
+
+    <section class="section">
+        <h2 class="title">~ Trouver une recette ~</h2>
+        <div class="panel">
+            <div class="row imgback">
+                <div class="col-xs-3"></div>
+                <div class="col-xs-12 col-sm-9 fp">
+                    <div class="filters">
+                            <div class="filter">
+                                <p><label for="">Nom de la recette</label></p>
+                                <p><input type="text" ng-model="SelectedRecipe" placeholder="ex: Tajine de poulet"></p>
+                            </div>
+                            <div class="filter">
+                                <p><label for="">Ingrédient(s) utlisé(s) pour la recette</label></p>
+                                <p><input type="text" ng-model="SelectedIngredient" placeholder="ex: poulet;oeuf;farine"></p>
+                            </div>
+                            <div class="filter">
+                                <p><label for="">Valeur calorique de la recette <span class="fwn">(kcal/100g)</span></label></p>
+                                <p>
+                                    <span class="span-label">entre :</span>
+                                    <input type="number" ng-model="MinCalSelectedRecipe"  class="mr0" placeholder="ex: 450">
+                                    <span class="span-label">et</span>
+                                    <input type="number" ng-model="MaxCalSelectedRecipe" placeholder="ex: 750">
+                                </p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sort">
+            <p>
+                <span class="span-label">Trier par :</span>
+                <select ng-model="SelectedOrder" ng-options="RecipeFilterOption.Value as RecipeFilterOption.Description for RecipeFilterOption in RecipeFilterOptions"></select>
+                
+            </p>
+        </div>
+        <div class="result">
+            <div class="recettes row" ng-init="limit = 4" >
+                    <div ng-show="SelectedIngredient.length > 0 || MinCalSelectedRecipe.length > 0 || MaxCalSelectedRecipe.length > 0 || SelectedRecipe.length > 0 " class="col-xs-6 col-sm-4 col-md-3 recette"
+                         ng-repeat="r in Recipes 
+                         |filter: ingredientsFilter
+                         | filter: {'Name': SelectedRecipe} 
+                         | filter:byRange('calories', MinCalSelectedRecipe, MaxCalSelectedRecipe)
+                         | orderBy:SelectedOrder 
+                         | limitTo: limit as results">
+                        <a href="./Detail/{{r.IdRecipe}}">
+                            <img src="{{r.UrlRecipePicture}}" alt="{{r.Name}}">
+                            <div class="top" title="note : {{r.AverageRate}}/5">
+                                <span class="note">
+                                    <star-rating rating-value="{{r.AverageRate}}" readonly="isReadonly"></star-rating>
+                                </span>
+                            </div>
+                            <div class="bot">
+                                <p class="name">{{r.Name}}</p>
+                            </div>
+                        </a>
+                    </div>
+                <p ng-if="results.length == 0 ||  (SelectedIngredient.length ==  0  || MinCalSelectedRecipe.length != 0  ||  MaxCalSelectedRecipe.length != 0  || SelectedRecipe.length != 0)" class="col-xs-12 blank">Aucune recette ne correspond à votre recherche</p>
+
+                <div ng-if="results.length == 0 ||  SelectedIngredient.length ==  0  &&  MinCalSelectedRecipe.length == 0 && MaxCalSelectedRecipe.length == 0 && SelectedRecipe.length == 0" class="row showmore">
+                    <div class="col-xs-12">
+                        <button type="button" ng-hide="results.length === items.length"
+                                ng-click="limit = limit +4" class="btn btn_color1">
+                            <span class="glyphicon glyphicon-chevron-down"></span>Afficher d'avantage
+                        </button>
+                    </div>
+                </div>
+        </div>
+        </div>
+
+    </section>
+    <section class="section">
+        <h2 class="title">~ Meilleures recettes ~</h2>
+        <div class="recettes row" ng-init="limit = 3">
+            <div class="col-xs-6 col-sm-3 recette" ng-repeat="r in Recipes | orderBy:'-AverageRate' ">
+                <a href="./Detail/{{r.IdRecipe}}">
+                    <img src="{{r.UrlRecipePicture}}" alt="{{r.Name}}">
+                    <div class="top" title="note : {{r.AverageRate}}/5">
+                        
+
+                        <span class="note">
+                            <star-rating rating-value="{{r.AverageRate}}" readonly="isReadonly"></star-rating>
+                        </span>
+                    </div>
+                    <div class="bot">
+                        <p class="name">{{r.Name}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <h2 class="title">~ Nouvelles recettes ~</h2>
+        <div class="recettes row">
+                <div class="col-xs-6 col-sm-3 recette" ng-repeat="r in Recipes | orderBy:'-CreationDate' ">
+                    <a href="./Detail/{{r.IdRecipe}}">
+                        <img src="{{r.UrlRecipePicture}}" alt="{{r.Name}}">
+                        <div class="top" title="note : {{r.AverageRate}}/5">
+                            <span class="note">
+                                <star-rating rating-value="{{r.AverageRate}}" readonly="isReadonly"></star-rating>
+                            </span>
+                        </div>
+                        <div class="bot">
+                            <p class="name">{{r.Name}}</p>
+                        </div>
+                    </a>
+                </div>
+        </div>
+    </section>
+
+
+

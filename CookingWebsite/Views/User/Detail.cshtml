@@ -1,0 +1,61 @@
+﻿   <div  class="content" id="content_communaute_details" ng-app="MyApp" ng-controller="UserController">
+
+        <section class="section details">
+            <div class="row">
+                <div class="col-vxs-12 col-xs-6 col-sm-5">
+                    <div class="avatar-wrap">
+                        <img class="avatar" src="{{UrlProfilPicture}}" alt="{{Login}}">
+                    </div>
+                </div>
+                <div class="col-vxs-12 col-xs-6 col-sm-7">
+                    <div class="infos">
+                        <h1 class="name">{{Login}}</h1>
+                        <span class="note">
+                            <star-rating rating-value="{{AverageRate}}" readonly="isReadonly"></star-rating>
+                        </span>
+                                <p class="level">
+
+                                    <span class="status">Expert</span>
+                                </p>
+                                <p class="city"><span class="fwb">Ville : </span></p>
+                                <p class="age"><span class="fwb">Age : </span></p>
+                                <p class="shared"><span class="fwb">{{Login}}</span> a partagé <span class="nb">{{TotalRecipe}}</span> recettes</p>
+                                <p class="bio">
+                                    <span class="fwb">BIO : </span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio aspernatur fuga quisquam iusto,
+                                    eum veniam vel cumque autem assumenda nulla illum accusamus, expedita animi quaerat temporibus saepe magnam, dolor minima.
+                                </p>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Afficher le bloc ci-dessous uniquement si lutilisateur connecté se rend sur sa propre page -->
+        <section class="section newrecette">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="c">Vous en avez sous la toque ?!</p>
+                    <p class="b">
+                        <a href="recettes_new.html" class="btn btn_color1"><span class="glyphicon glyphicon-plus-sign"></span><span>Créez une nouvelle recette</span></a>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <h2 class="title">~ Les recettes de {{Login}} ~</h2>
+            <div class="recettes row">
+                <div class="col-xs-6 col-sm-3 recette" ng-repeat="r in Recipes">
+                    <a href="recettes_details.html">
+                        <img  src="{{r.UrlRecipePicture}}" alt="{{r.Name}}">
+                        <div class="top" title="note : 3,2/5">
+                            @*<div ng-app="app" ng-controller="RatingController as rating" class="container">*@
+                                <star-rating rating-value="{{r.AverageRate}}" readonly="isReadonly"></star-rating>
+                            @*</div>*@
+                        </div>
+                        <div class="bot">
+                            <p class="name">{{r.Name}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
