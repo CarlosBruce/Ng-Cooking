@@ -109,6 +109,9 @@ namespace Cooking.Repository
                                 rc.IdRecipeCategory = r.IdRecipeCategory;
                                 u.IdUser = r.IdUser;
                                 r.Ingredients = getAllIngredientsByRecipeId( r.IdRecipe );
+                                r.RelatedRecipes = getAllRelatedRecipesByRecipeId( r.IdRecipe );
+                                foreach(Recipe _recipe in r.RelatedRecipes)
+                                    _recipe.RecipeRates = getRecipeRates( _recipe.IdRecipe );
                                 r.User = u;
                                 r.RecipeCategory = rc;
                                 return r;
@@ -119,6 +122,20 @@ namespace Cooking.Repository
 
             recipe.RecipeRates = getRecipeRates( recipe.IdRecipe );
             return recipe;
+        }
+
+        private ICollection<Recipe> getAllRelatedRecipesByRecipeId( int idRecipe )
+        {
+            List<Entities.Recipe> recipes = new List<Entities.Recipe>();
+            var param = new DynamicParameters();
+            param.Add( "@IdRecipe", dbType: DbType.Int32, value: idRecipe, direction: ParameterDirection.Input );
+
+            using( SqlConnection connection = GetConnection() )
+            {
+                recipes = connection.Query<Entities.Recipe>
+                    ( "PS_SELECT_ALL_RelatedRecipes_BY_RecipeID", commandType: CommandType.StoredProcedure, param: param ).ToList();
+            }
+            return recipes;
         }
 
         public bool Remove( int idRecipe )

@@ -162,6 +162,22 @@ angular.module(['ngRoute']).controller('RecipeController', function ($scope, Rec
             $scope.calories = 0;
             $scope.Preparation = res.Preparation;
             $scope.trustPreparation = $sce.trustAsHtml($scope.Preparation);
+            $scope.RelatedRecipes = res.RelatedRecipes;
+
+
+            for (var i = 0; i < $scope.RelatedRecipes.length; i++) {
+
+                $scope.RelatedRecipes[i].AverageRate = 0;
+                for (var i2 = 0; i2 < $scope.RelatedRecipes[i].RecipeRates.length; i2++) {
+                    $scope.RelatedRecipes[i].AverageRate += $scope.RelatedRecipes[i].RecipeRates[i2].Rate;
+                }
+                $scope.RelatedRecipes[i].AverageRate = Math.round($scope.RelatedRecipes[i].AverageRate /$scope.RelatedRecipes[i].RecipeRates.length);
+
+                if (isNaN($scope.RelatedRecipes[i].AverageRate))
+                    $scope.RelatedRecipes[i].AverageRate = 0;
+            }
+
+
             for (var i = 0; i < $scope.Ingredients.length; i++) {
                 $scope.calories += $scope.Ingredients[i].Calories;
             }
@@ -170,6 +186,8 @@ angular.module(['ngRoute']).controller('RecipeController', function ($scope, Rec
                 $scope.AverageRate += $scope.RecipeRates[i].Rate;
             }
             $scope.AverageRate = Math.round($scope.AverageRate / $scope.RecipeRates.length);
+            if (isNaN($scope.AverageRate))
+                $scope.AverageRate = 0;
         },
         function (e) {
             console.log('Chargement de recette imopssible', e);
@@ -219,12 +237,12 @@ angular.module(['ngRoute']).controller('RecipeController', function ($scope, Rec
 
 
     // Save Recipe
-    $scope.saveRate = function (Rate) {
+    $scope.saveRate = function () {
         var RecipeRate = {
             IdRecipe: $scope.IdRecipe,
             //IdUser: $scope.IdUser,
             IdUser: 14,
-            Rate: Rate,
+            Rate: $scope.rateValue,
             Title: $scope.Title,
             Comment: $scope.Comment
         }
@@ -247,19 +265,23 @@ angular.module(['ngRoute']).controller('RecipeController', function ($scope, Rec
             IdRecipeCategory: $scope.RecipeCategory,
             UrlRecipePicture: $scope.UrlRecipePicture,
             Name: $scope.Name,
+            Preparation: $scope.Preparation,
             IdUser: $scope.User,
             Ingredients: $scope.Ingredients
         };
 
         if ($scope.IsNew === 1) {
+            Recipe.IdUser = 14;
             var promisePost = RecipeService.post(Recipe);
             promisePost.then(function (t) {
+                $scope.recipeAdded = true;
                 $scope.IdRecipe = t.data.IdRecipe;
                 getData();
             }, function (e) {
+                $scope.recipeError = true;
                 console.log("Error " + e);
             });
-        } else {   // Already exists tv show, update 
+        } else { 
             var promisePut = RecipeService.put($scope.IdRecipe, IdRecipe);
             promisePut.then(function (t) {
                 $scope.Message = "Recette mis à jours";

@@ -36,7 +36,7 @@ namespace Cooking.Repository
             {
                 using( SqlConnection connection = GetConnection() )
                 {
-                    rvalue = connection.Query<int>( "PS_INSERT_RecipeRate", new { recipeRate.IdUser, recipeRate.Rate, recipeRate.Title,recipeRate.IdRecipe, recipeRate.Comment }, commandType: CommandType.StoredProcedure ).FirstOrDefault();
+                     connection.Execute( "PS_INSERT_RecipeRate", new { recipeRate.IdUser, recipeRate.Rate, recipeRate.Title,recipeRate.IdRecipe, recipeRate.Comment }, commandType: CommandType.StoredProcedure );
                 }
             }
             catch( SqlException e )

@@ -26,15 +26,12 @@ namespace CookingWebAPI.Controllers
         {
             HttpResponseMessage response = new HttpResponseMessage();
 
-            try
-            {
+
                 if( this.RecipeRateService.Add( rt ) )
                     response = Request.CreateResponse<RecipeRate>( HttpStatusCode.OK, rt );
-            }
-            catch( Exception e )
-            {
-                response = Request.CreateResponse<Exception>( HttpStatusCode.InternalServerError, e );
-            }
+                else
+                    response = Request.CreateResponse<Exception>( HttpStatusCode.InternalServerError, new Exception("Erreur lors de l'ajout de note") );
+
             return response;
         }
     }

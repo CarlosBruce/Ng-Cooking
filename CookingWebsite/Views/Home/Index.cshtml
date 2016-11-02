@@ -1,31 +1,51 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<div class="content" id="content_home" ng-app="MyApp" ng-controller="RecipeController">
+    <h1 class="page-title">Bienvenue sur NgCooking !</h1>
+    <section class="section">
+        <h2 class="title">~ Meilleures recettes ~</h2>
+        <div class="recettes row" ng-init="limit = 3">
+            <div class="col-xs-6 col-sm-3 recette" ng-repeat="r in Recipes | orderBy:'-AverageRate' ">
+                <a href="./Detail/{{r.IdRecipe}}">
+                    <img src="{{r.UrlRecipePicture}}" alt="{{r.Name}}">
+                    <div class="top" title="note : {{r.AverageRate}}/5">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+                        <span class="note">
+                            <star-rating rating-value="{{r.AverageRate}}" readonly="isReadonly"></star-rating>
+                        </span>
+                    </div>
+                    <div class="bot">
+                        <p class="name">{{r.Name}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section newrecette">
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="c">Vous en avez sous la toque ?!</p>
+                <p class="b">
+                    <a href="/Recipe/New" class="btn btn_color1"><span class="glyphicon glyphicon-plus-sign"></span><span>Créez une nouvelle recette</span></a>
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <h2 class="title">~ Nouvelles recettes ~</h2>
+        <div class="recettes row">
+            <div class="col-xs-6 col-sm-3 recette" ng-repeat="r in Recipes | orderBy:'-CreationDate' ">
+                <a href="./Detail/{{r.IdRecipe}}">
+                    <img src="{{r.UrlRecipePicture}}" alt="{{r.Name}}">
+                    <div class="top" title="note : {{r.AverageRate}}/5">
+                        <span class="note">
+                            <star-rating rating-value="{{r.AverageRate}}" readonly="isReadonly"></star-rating>
+                        </span>
+                    </div>
+                    <div class="bot">
+                        <p class="name">{{r.Name}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
 </div>

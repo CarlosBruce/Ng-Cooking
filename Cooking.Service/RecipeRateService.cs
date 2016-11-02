@@ -11,6 +11,12 @@ namespace Cooking.Service
     public class RecipeRateService : IRecipeRateService
     {
         private readonly IRecipeRateRepository _recipeRateRepo;
+
+        public RecipeRateService( IRecipeRateRepository recipeRateRepo )
+        {
+            _recipeRateRepo = recipeRateRepo;
+        }
+
         public bool Add( RecipeRate rt )
         {
             return _recipeRateRepo.Save( rt );

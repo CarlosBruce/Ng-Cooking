@@ -158,13 +158,9 @@ function starRating() {
                 }
             };
             scope.toggle = function (index) {
-                if (scope.readonly == undefined || scope.readonly === false) {
+                if (scope.readonly == undefined || scope.readonly === false && index !=0) {
                     scope.ratingValue = index + 1;
-                    scope.onRatingSelect({
-                        rating: index + 1
-                    });
-                    $rootScope.$broadcast('rateEvent', index + 1);
-                    rateValue = index;
+                    scope.rateValue = index + 1;
                 }
                 
             };

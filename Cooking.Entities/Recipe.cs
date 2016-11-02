@@ -9,6 +9,7 @@ namespace Cooking.Entities
         {
             this.RecipeRates = new HashSet<RecipeRate>();
             this.Ingredients = new HashSet<Ingredient>();
+            this.RelatedRecipes = new HashSet<Recipe>();
         }
     
         public int IdRecipe { get; set; }
@@ -24,5 +25,6 @@ namespace Cooking.Entities
         public virtual User User { get; set; }
         public virtual ICollection<RecipeRate> RecipeRates { get; set; }
         public virtual ICollection<Ingredient> Ingredients { get; set; }
+        public virtual ICollection<Recipe> RelatedRecipes { get; set; }
     }
 }
