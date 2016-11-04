@@ -1,7 +1,6 @@
-﻿/// <reference path="../Service/IngredientService.js" />
-//angular.module('ngRoute').controller('RecipeCategoryController', function ($scope, $location, $routeParams, RecipeCategoryService) {
+﻿NgCookingRecipeCat.controller('RecipeCategoryController', ['RecipeCategoryService']);
 
-angular.module('ngRoute').controller('RecipeCategoryController', function ($scope, RecipeCategoryService) {
+NgCookingRecipeCat.controller('RecipeCategoryController', function ($scope, RecipeCategoryService) {
 
     $scope.IsNew = 1;
 

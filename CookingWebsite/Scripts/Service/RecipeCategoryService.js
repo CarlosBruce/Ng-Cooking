@@ -1,4 +1,4 @@
-﻿angular.module('ngRoute').service('RecipeCategoryService', function ($http) {
+﻿NgCookingRecipeCat.service('RecipeCategoryService', function ($http) {
 
     //Create new
     this.post = function (RecipeCategory) {

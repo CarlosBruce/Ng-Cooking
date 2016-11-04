@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.Routing;
 
 namespace CookingWebAPI
 {
@@ -17,8 +18,9 @@ namespace CookingWebAPI
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            // Itinéraires de l'API Web
-            config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes(  );
+
+            //config.MapHttpAttributeRoutes();
 
             config.EnableCors();
 
@@ -27,6 +29,14 @@ namespace CookingWebAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi2",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new {action = RouteParameter.Optional, id = RouteParameter.Optional }
+            );
+
         }
     }
 }

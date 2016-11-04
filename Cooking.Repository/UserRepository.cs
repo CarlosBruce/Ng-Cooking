@@ -18,7 +18,7 @@ namespace Cooking.Repository
         {
             //return new SqlConnection( ConfigurationManager.ConnectionStrings["DBConnection"].ToString() );
 
-            return new SqlConnection(this._dbConnection);
+            return new SqlConnection( this._dbConnection );
         }
 
         public UserRepository()
@@ -43,7 +43,7 @@ namespace Cooking.Repository
             return users;
         }
 
-        private List<Recipe> getUserRecipes(int idUser )
+        private List<Recipe> getUserRecipes( int idUser )
         {
             List<Entities.Recipe> recipes = new List<Entities.Recipe>();
             var param = new DynamicParameters();
@@ -113,7 +113,7 @@ namespace Cooking.Repository
             {
                 using( SqlConnection connection = GetConnection() )
                 {
-                    rvalue = connection.Query<int>( "PS_INSERT_User", new { user.Email,  user.Login, user.Password, user.UrlProfilPicture }, commandType: CommandType.StoredProcedure ).FirstOrDefault();
+                    rvalue = connection.Query<int>( "PS_INSERT_User", new { user.Email, user.Login, user.Password, user.UrlProfilPicture }, commandType: CommandType.StoredProcedure ).FirstOrDefault();
                 }
                 if( rvalue == -1 )
                     return false;
@@ -142,6 +142,35 @@ namespace Cooking.Repository
                 throw e;
             }
             return true;
+        }
+
+        public User LogByLoginAndPassword( string login, string password )
+        {
+            Entities.User user = new Entities.User();
+            var param = new DynamicParameters();
+            param.Add( "@login", dbType: DbType.String, value: login, direction: ParameterDirection.Input );
+            param.Add( "@password", dbType: DbType.String, value: password, direction: ParameterDirection.Input );
+
+            try
+            {
+                using( SqlConnection connection = GetConnection() )
+                {
+                    user = connection.Query<Entities.User>( "PS_SELECT_IDENTIFY_USER", commandType: CommandType.StoredProcedure, param: param ).FirstOrDefault();
+                }
+                if( user != null )
+                {
+                    user.Recipes = getUserRecipes( user.IdUser );
+                    user.RecipeRates = getUserRecipeRates( user.IdUser );
+                }
+                else
+                    user = new User() { IdUser = -1, Login = login, Password = password };
+
+            }
+            catch( SqlException e )
+            {
+                throw e;
+            }
+            return user;
         }
     }
 }

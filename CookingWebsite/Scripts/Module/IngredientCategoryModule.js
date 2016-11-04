@@ -1,0 +1,1 @@
+﻿var NgCookingIngredientCat = angular.module('NgCooking.ingredientCategoryModule', []);

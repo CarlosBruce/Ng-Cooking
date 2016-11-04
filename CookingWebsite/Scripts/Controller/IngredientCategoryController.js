@@ -1,6 +1,6 @@
-﻿//angular.module('ngRoute').controller('IngredientCategoryController', function ($scope, $location, $routeParams, IngredientCategoryService) {
+﻿NgCookingIngredientCat.controller('IngredientCategoryController', ['IngredientCategoryService']);
 
-    angular.module('ngRoute').controller('IngredientCategoryController', function ($scope, IngredientCategoryService) {
+NgCookingIngredientCat.controller('IngredientCategoryController', function ($scope, IngredientCategoryService) {
 
     $scope.IsNew = 1;
 

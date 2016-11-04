@@ -55,13 +55,34 @@ namespace CookingWebAPI.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Post([FromBody]User u )
+        public HttpResponseMessage Post([FromBody]User user )
         {
             HttpResponseMessage response = new HttpResponseMessage();
 
             try
             {
-                if( this.userService.Add( u ) )
+                if( this.userService.Add( user ) )
+                    response = Request.CreateResponse<User>( HttpStatusCode.OK, user );
+            }
+            catch( Exception e )
+            {
+                response = Request.CreateResponse<Exception>( HttpStatusCode.InternalServerError, e );
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        public HttpResponseMessage Login( string Login, string Password )
+        {
+            HttpResponseMessage response = new HttpResponseMessage();
+            User u = new User() {IdUser = -1,Login = Login,Password =  Password};
+            try
+            {
+                u = this.userService.LogUser( u );
+                if( u.IdUser == -1)
+                    response = Request.CreateResponse<User>( HttpStatusCode.Unauthorized, u );
+                else
                     response = Request.CreateResponse<User>( HttpStatusCode.OK, u );
             }
             catch( Exception e )

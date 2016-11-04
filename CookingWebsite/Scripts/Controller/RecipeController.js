@@ -1,5 +1,7 @@
-﻿//angular.module('ngRoute').controller('IngredientController', function ($scope, $location, $routeParams, IngredientService, IngredientCategoryService) {
-angular.module(['ngRoute']).controller('RecipeController', function ($scope, RecipeService, RecipeCategoryService, UserService, IngredientCategoryService, $location,$sce) {
+﻿
+NgCookingRecipe.controller('RecipeController', ['location', 'RecipeService', 'RecipeCategoryService', 'UserService', 'IngredientCategoryService', 'sce']);
+
+NgCookingRecipe.controller('RecipeController', function ($scope, $location, RecipeService, RecipeCategoryService, UserService, IngredientCategoryService, $sce) {
     $scope.IsNew = 1;
     $scope.IngredientList = [];
     $scope.Ingredients = [];
@@ -10,14 +12,15 @@ angular.module(['ngRoute']).controller('RecipeController', function ($scope, Rec
 
     $scope.$on('rateEvent', function (event, myData) { alert(myData); })
 
-    var urlarray = $location.absUrl().split("/")
-    if (urlarray.length > 0) {
+    var urlarray = $location.absUrl().split("/");
+    if (urlarray.length > 0 && $location.absUrl().includes("Detail")) {
         var idRecipe = urlarray[urlarray.length - 1] || "Unknown";
         if (idRecipe > 0)
             get(idRecipe);
-        else
-            getData();
+
     }
+    else
+        getData();
 
     getIngredientCategories();
     getRecipeCategories();

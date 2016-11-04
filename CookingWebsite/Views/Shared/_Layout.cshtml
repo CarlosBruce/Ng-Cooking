@@ -20,8 +20,8 @@
     <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
-<body>
-    <div id="wrapper">
+<body ng-app="NgCooking">
+    <div id="wrapper"  ng-controller="UserController">
         <header id="header">
             <div class="container">
                 <div class="row">
@@ -67,8 +67,8 @@
 
                             <div class="account-area">
                                 <button type="button" class="button connect" data-popin-open="connect_popin"><span class="icon"></span>Connexion</button>
-                                <a href="communaute_details.html" class="button account"><span class="icon"></span>Mon profil</a>
-                                <button type="button" class="button deconnect"><span class="glyphicon glyphicon-off"></span>Deconnexion</button>
+                                <a ng-href="./User/Detail/{{IdUser}}"  class="button account"><span class="icon"></span>Mon profil</a>
+                                <button type="button" ng-click="logOut()"  class="button deconnect"><span class="glyphicon glyphicon-off"></span>Deconnexion</button>
                             </div>
                         </nav>
                     </div>
@@ -82,16 +82,16 @@
                 </div>
                 </div>
             
-
+                    @Scripts.Render( "~/bundles/jquery" )
                     @Scripts.Render( "~/bundles/bootstrap" )
                     @Scripts.Render( "~/bundles/angular" )
 
-                    @Scripts.Render( "~/bundles/service" )
-                    @Scripts.Render( "~/bundles/controller" )
 
                     @Scripts.Render( "~/bundles/module" )
                     @Scripts.Render( "~/bundles/routing" )
 
+                    @Scripts.Render( "~/bundles/service" )
+                    @Scripts.Render( "~/bundles/controller" )
 
                     @Styles.Render( "~/Content/css" )
                     @Styles.Render( "~/bundles/bootstrap" )
@@ -113,23 +113,22 @@
         </footer>
     </div>
 
-    <div class="popin" data-popin="connect_popin">
+    <div class="popin" data-popin="connect_popin"  ng-controller="UserController">
         <div class="popin-content">
             <div class="popin-scroll">
                 <p class="popin-title">Connexion</p>
-                <form action="#">
                     <p>
-                        <label for="co_user" class="fwb">Identifiant (email)</label>
-                        <input id="co_user" class="wide" type="text" />
+                        <label for="co_user" class="fwb">Identifiant (login)</label>
+                        <input id="co_user" ng-model="Login" class="wide" type="text"  />
                     </p>
                     <p>
                         <label for="co_pwd" class="fwb">Mot de passe</label>
-                        <input id="co_pwd" class="wide" type="text" />
+                        <input id="co_pwd"   ng-model="Password" class="wide" type="password" />
+                        <span ng-show="badPassWord">Ban non tu te trompe</span>
                     </p>
                     <p class="ac nm mt2">
-                        <button type="button" class="btn btn_big btn_color1"><span class="glyphicon glyphicon-ok"></span><span class="fwb uc">Valider</span></button>
+                        <button type="button"  ng-click="logUserIn()" class="btn btn_big btn_color1"><span class="glyphicon glyphicon-ok"></span><span class="fwb uc">Valider</span></button>
                     </p>
-                </form>
             </div>
             <button class="close popin-close"><span class="glyphicon glyphicon-remove"></span></button>
         </div>

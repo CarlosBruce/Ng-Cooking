@@ -48,8 +48,9 @@ namespace CookingWebsite
 
 
 
-            bundles.Add( new ScriptBundle( "~/bundles/routing" ).Include(
-            "~/Scripts/Routing/*.js" ) );
+
+            //bundles.Add( new ScriptBundle( "~/bundles/routing" ).Include(
+            //"~/Scripts/Routing/*.js" ) );
 
 
 

@@ -2,8 +2,9 @@ namespace Cooking.Entities
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class User
+    using System.Net.Http;
+    using System.Web.Http.Routing;
+    public partial class User 
     {
         public User()
         {
@@ -20,5 +21,7 @@ namespace Cooking.Entities
 
         public virtual ICollection<Recipe> Recipes { get; set; }
         public virtual ICollection<RecipeRate> RecipeRates { get; set; }
+
+
     }
 }

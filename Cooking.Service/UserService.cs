@@ -34,6 +34,11 @@ namespace Cooking.Service
             return u;
         }
 
+        public User LogUser( User u )
+        {
+            return _userRepo.LogByLoginAndPassword( u.Login, u.Password);
+        }
+
         public bool Remove( int id )
         {
             return _userRepo.Remove( id );

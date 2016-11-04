@@ -1,5 +1,6 @@
-﻿//angular.module('ngRoute').controller('IngredientController', function ($scope, $location, $routeParams, IngredientService, IngredientCategoryService) {
-angular.module('ngRoute').controller('IngredientController', function ($scope, IngredientService, IngredientCategoryService) {
+﻿NgCookingIngredient.controller('IngredientController', ['IngredientService', 'IngredientCategoryService']);
+
+NgCookingIngredient.controller('IngredientController', function ($scope, IngredientService, IngredientCategoryService) {
     $scope.IsNew = 1;
 
     getData();

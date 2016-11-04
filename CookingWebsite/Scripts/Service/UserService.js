@@ -1,6 +1,17 @@
-﻿angular.module('ngRoute').service('UserService', function ($http) {
+﻿
+NgCookingUser.service('UserService', function ($http) {
 
-    //Create new
+    this.postLogin = function (User) {
+        //var request = $http({
+        //    method: "post",
+        //    url: "http://localhost:51371/api/User/login",
+        //    data: User,
+        //});
+        //return request;
+
+        return $http.get("http://localhost:51371/api/User/?Login=" + User.Login + "&password=" + User.Password);
+    }
+
     this.post = function (User) {
         var request = $http({
             method: "post",
@@ -9,12 +20,11 @@
         });
         return request;
     }
-    //Get Single 
+
     this.get = function (Id) {
         return $http.get("http://localhost:51371/api/User/" + Id);
     }
 
-    //Get All
     this.getUsers = function () {
         return $http.get("http://localhost:51371/api/User");
     }

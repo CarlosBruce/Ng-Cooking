@@ -1,4 +1,1 @@
-﻿//var app;
-//(function () {
-//    app.module("UserModule", []);
-//})();
+﻿var NgCookingUser = angular.module('NgCooking.userModule', []);

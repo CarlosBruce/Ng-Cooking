@@ -1,21 +1,26 @@
-﻿angular.module('MyApp.Controllers',[]).controller('UserController', function ($scope, UserService, $route, $routeParams, $location) {
+﻿
+NgCookingUser.controller('UserController', ['location', 'UserService','Session']);
 
-    var urlarray = $location.absUrl().split("/")
-    if (urlarray.length > 0) {
-        var idUser = urlarray[urlarray.length - 1] || "Unknown";
-        if (idUser > 0)
-           get(idUser);
-        else
-            getData();
-    }
+NgCookingUser.controller('UserController', function ($scope, $location, UserService,Session) {
 
     $scope.IsNew = 1;
+    $scope.badPassWord = false;
+    $scope.IdUser = -1;
 
-    
+    var urlarray = $location.absUrl().split("/");
+    if (urlarray.length > 0 && $location.absUrl().includes("Detail")) {
+        var idUser = urlarray[urlarray.length - 1] || "Unknown";
+        if (idUser > 0) {
+            get(idUser);
+            $scope.IsNew = 0;
+        }
+    }
+    if (urlarray.length > 0 && $location.absUrl().includes("User"))
+        getData();
 
-    //Data used to populate the dropdown list
+    //User Page Filter
     $scope.UserFilterOptions = [
-       { "Description": "Ordre alphabétique (A->A)","Value": "-Login" },
+       { "Description": "Ordre alphabétique (A->A)", "Value": "-Login" },
        { "Description": "Ordre alphabétique (Z->A)", "Value": "+Login" },
        { "Description": "Les mieux notés d'abord", "Value": "-AverageRate" },
        { "Description": "Les moins bien notés d'abord", "Value": "+AverageRate" },
@@ -23,7 +28,7 @@
        { "Description": "Les moins productifs d'abord", "Value": "+TotalRecipe" }];
 
 
-    // Load all Users
+    //    // Load all Users
     function getData() {
         var promiseGet = UserService.getUsers();
 
@@ -37,7 +42,7 @@
                 }
                 $scope.Users[i].AverageRate = $scope.Users[i].AverageRate / $scope.Users[i].RecipeRates.length;
             }
-            
+
         },
             function (errorT) {
                 console.log('Chargement des utilisateurs impossible', errorT);
@@ -69,12 +74,11 @@
                 recipesRates = 0;
                 $scope.Recipes[i].AverageRate = 0;
                 for (var i2 = 0; i2 < $scope.RecipeRates.length; i2++) {
-                    if ($scope.RecipeRates[i2].IdRecipe == $scope.Recipes[i].IdRecipe)
-                    {
+                    if ($scope.RecipeRates[i2].IdRecipe == $scope.Recipes[i].IdRecipe) {
                         $scope.Recipes[i].AverageRate += $scope.RecipeRates[i2].Rate;
                         recipesRates++;
                     }
-                    
+
                 }
                 $scope.Recipes[i].AverageRate = $scope.Recipes[i].AverageRate / recipesRates;
             }
@@ -88,6 +92,52 @@
         });
     }
 
+
+    // User LogIn
+    $scope.logUserIn = function () {
+        var User = {
+            IdUser: -1,          
+            Login: $scope.Login,
+            Email: "",
+            Password: $scope.Password
+        };
+
+        var promisePost = UserService.postLogin(User);
+        promisePost.then(function (t) {
+
+            if (t.data.IdUser > 0) {
+
+                var element = angular.element('.popin');
+                element.removeClass('displayed');
+
+
+
+                $scope.badPassWord = false;
+                $scope.IdUser = t.data.IdUser;
+                $scope.Email = t.data.Email;
+                $scope.Password = t.data.Password;
+                $scope.Login = t.data.Login;
+
+                Session.create(t.data);
+            }
+            else
+                $scope.badPassWord = true;
+        }, function (e) {
+            console.log("Error " + e);
+            $scope.badPassWord = true;
+        });
+
+    }
+
+
+    // User LogOut
+    $scope.logOut = function () {
+        if (Session.IdUser != null) {
+            Session.destroy(); 
+        }
+    }
+
+
     // Clear form
     $scope.clear = function () {
         $scope.IsNew = 1;
@@ -97,7 +147,7 @@
         $scope.Login = "";
     }
 
-    // Save tv show
+    // Save User
     $scope.save = function () {
         var User = {
             IdUser: $scope.IdUser,
@@ -124,49 +174,6 @@
             });
         }
     };
-})
-.directive('starRating', starRating);
+});
 
-
-function starRating() {
-    return {
-        restrict: 'EA',
-        template:
-          '<ul class="star-rating" ng-class="{readonly: readonly}">' +
-          '  <li ng-repeat="star in stars" class="star" ng-class="{filled: star.filled}" ng-click="toggle($index)">' +
-          '    <i class="fa fa-star"></i>' + // or &#9733
-          '  </li>' +
-          '</ul>',
-        scope: {
-            rateValue: '=ngModel',
-            ratingValue: '@',
-            max: '=?', // optional (default is 5)
-            onRatingSelect: '&?',
-            readonly: '=?'
-
-        },
-        link: function (scope, element, attributes) {
-            if (scope.max == undefined) {
-                scope.max = 5;
-            }
-            function updateStars() {
-                scope.stars = [];
-                for (var i = 0; i < scope.max; i++) {
-                    scope.stars.push({
-                        filled: i < scope.ratingValue
-                    });
-                }
-            };
-            scope.toggle = function (index) {
-                if (scope.readonly == undefined || scope.readonly === false && index !=0) {
-                    scope.ratingValue = index + 1;
-                    scope.rateValue = index + 1;
-                }
-                
-            };
-            scope.$watch('ratingValue', function (oldValue, newValue) {
-                    updateStars();
-            });
-        }
-    };
-}
+//UserService,

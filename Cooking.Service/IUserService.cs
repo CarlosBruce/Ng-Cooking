@@ -13,5 +13,6 @@ namespace Cooking.Service
         List<User> Get();
         User Get(int id );
         bool Remove(int id);
+        User LogUser( User u );
     }
 }

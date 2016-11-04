@@ -1,4 +1,16 @@
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\Cooking.Entities.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\Cooking.Entities.pdb
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\System.Web.Http.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\System.Web.Http.WebHost.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\Newtonsoft.Json.xml
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\System.Web.Http.xml
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\System.Web.Http.WebHost.xml
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\fr\System.Net.Http.Formatting.resources.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\fr\System.Web.Http.resources.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\bin\Debug\fr\System.Web.Http.WebHost.resources.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\obj\Debug\Cooking.Entities.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\obj\Debug\Cooking.Entities.pdb
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Entities\obj\Debug\Cooking.Entities.csprojResolveAssemblyReference.cache

@@ -1,0 +1,1 @@
+﻿var NgCookingRecipe = angular.module('NgCooking.recipeModule', []);

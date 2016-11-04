@@ -14,5 +14,6 @@ namespace Cooking.Repository
         User GetById( int idUser );
         bool Update( User user );
         List<User> GetAll();
+        User LogByLoginAndPassword( string login, string password );
     }
 }
