@@ -365,6 +365,7 @@
     <Content Include="Content\Css\Site.css" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular.js" />
@@ -382,6 +383,8 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Controller\IngredientCategoryController.js" />
     <Content Include="Scripts\Controller\IngredientController.js" />
+    <Content Include="Scripts\Controller\LayoutController.js" />
+    <Content Include="Scripts\Controller\LoginController.js" />
     <Content Include="Scripts\Controller\RecipeCategoryController.js" />
     <Content Include="Scripts\Controller\RecipeController.js" />
     <Content Include="Scripts\Controller\UserController.js" />

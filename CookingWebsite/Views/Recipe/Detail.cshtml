@@ -60,7 +60,8 @@
                             <textarea name="" id="" ng-model="Comment" class="wide" placeholder="ex: Franchement cette NgRecette, c’est de la bombe. Le genre de saveurs qui t’éveillent les papilles, t’as vu ! Woula, j’ai kiffé" required></textarea>
                         </div>
                         <div class="ar">
-                            <input ng-click="saveRate()" class="btn btn_color1" value="Poster !">
+                            <input ng-show="IsConnected" ng-click="saveRate()" class="btn btn_color1" value="Poster !">
+                            <span ng-show="!IsConnected">Log in First</span>
                         </div>
                     </div>
                 </div>

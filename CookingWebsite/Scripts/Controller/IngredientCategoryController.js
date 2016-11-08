@@ -1,8 +1,21 @@
-﻿NgCookingIngredientCat.controller('IngredientCategoryController', ['IngredientCategoryService']);
+﻿NgCookingIngredientCat.controller('IngredientCategoryController', ['IngredientCategoryService', 'cookies']);
 
-NgCookingIngredientCat.controller('IngredientCategoryController', function ($scope, IngredientCategoryService) {
+NgCookingIngredientCat.controller('IngredientCategoryController', function ($scope, IngredientCategoryService,$cookies) {
 
     $scope.IsNew = 1;
+    $scope.Connected = false;
+    $scope.badPassWord = false;
+    $scope.IdUser = -1;
+
+    var Curr_SessUser_IdUser = $cookies.get('Session_IdUser');
+
+    if (Curr_SessUser_IdUser) {
+        $scope.IdUser = Curr_SessUser_IdUser;
+        $scope.ProfileLink = 'http://localhost:51312/User/Detail/' + $scope.IdUser;
+        $scope.Connected = true;
+    }
+    else
+        $scope.ProfileLink = 'http://localhost:51312/User/Detail/List/'
 
     getData();
 

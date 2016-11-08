@@ -20,8 +20,8 @@
     <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
-<body ng-app="NgCooking">
-    <div id="wrapper"  ng-controller="UserController">
+<body ng-app="NgCooking" ng-controller="LayoutController">
+    <div id="wrapper" >
         <header id="header">
             <div class="container">
                 <div class="row">
@@ -46,7 +46,7 @@
         <main id="main">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-3" id="col-nav">
+                    <div class="col-sm-3" id="col-nav" >
                         <button type="button" id="mobile-close-btn">
                             <i class="glyphicon glyphicon-remove"></i>
                         </button>
@@ -66,8 +66,8 @@
                             </ul>
 
                             <div class="account-area">
-                                <button type="button" class="button connect" data-popin-open="connect_popin"><span class="icon"></span>Connexion</button>
-                                <a ng-href="./User/Detail/{{IdUser}}"  class="button account"><span class="icon"></span>Mon profil</a>
+                                <button type="button" ng-show="!Connected" class="button connect" data-popin-open="connect_popin"><span class="icon"></span>Connexion</button>
+                                <a ng-href="{{ProfileLink}}"  class="button account"><span class="icon"></span>Mon profil</a>
                                 <button type="button" ng-click="logOut()"  class="button deconnect"><span class="glyphicon glyphicon-off"></span>Deconnexion</button>
                             </div>
                         </nav>
@@ -113,7 +113,7 @@
         </footer>
     </div>
 
-    <div class="popin" data-popin="connect_popin"  ng-controller="UserController">
+    <div class="popin" data-popin="connect_popin"  ng-controller="LoginController">
         <div class="popin-content">
             <div class="popin-scroll">
                 <p class="popin-title">Connexion</p>
@@ -127,7 +127,9 @@
                         <span ng-show="badPassWord">Ban non tu te trompe</span>
                     </p>
                     <p class="ac nm mt2">
-                        <button type="button"  ng-click="logUserIn()" class="btn btn_big btn_color1"><span class="glyphicon glyphicon-ok"></span><span class="fwb uc">Valider</span></button>
+                        <button type="button"  ng-show="!Connected" ng-click="logUserIn()" class="btn btn_big btn_color1"><span class="glyphicon glyphicon-ok"></span><span class="fwb uc">Valider</span></button>
+                        <button type="button" ng-show="Connected" ng-click="logOut()" class="btn btn_big btn_color1"><span class="glyphicon glyphicon-off"></span><span class="fwb uc">Déconnecter</span></button>
+
                     </p>
             </div>
             <button class="close popin-close"><span class="glyphicon glyphicon-remove"></span></button>

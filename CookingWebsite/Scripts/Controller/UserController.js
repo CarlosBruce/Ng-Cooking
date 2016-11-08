@@ -1,11 +1,26 @@
 ﻿
-NgCookingUser.controller('UserController', ['location', 'UserService','Session']);
+NgCookingUser.controller('UserController', ['location', 'UserService', 'authService']);
 
-NgCookingUser.controller('UserController', function ($scope, $location, UserService,Session) {
+NgCookingUser.controller('UserController', function ($scope, $location, UserService, authService) {
 
-    $scope.IsNew = 1;
-    $scope.badPassWord = false;
-    $scope.IdUser = -1;
+    $scope.ConnectedUser = authService.currentUser();
+
+    if ($scope.ConnectedUser == null)
+        $scope.IsConnected = false;
+    else
+        $scope.IsConnected = true;
+
+
+
+    authService.subscribe($scope, function somethingChanged() {
+        $scope.ConnectedUser = authService.currentUser();
+
+        if ($scope.ConnectedUser == null)
+            $scope.IsConnected = false;
+        else
+            $scope.IsConnected = true;
+    });
+
 
     var urlarray = $location.absUrl().split("/");
     if (urlarray.length > 0 && $location.absUrl().includes("Detail")) {
@@ -15,6 +30,7 @@ NgCookingUser.controller('UserController', function ($scope, $location, UserServ
             $scope.IsNew = 0;
         }
     }
+
     if (urlarray.length > 0 && $location.absUrl().includes("User"))
         getData();
 
@@ -90,51 +106,6 @@ NgCookingUser.controller('UserController', function ($scope, $location, UserServ
         function (e) {
             console.log('Chargement de l\'utilisateur imopssible', e);
         });
-    }
-
-
-    // User LogIn
-    $scope.logUserIn = function () {
-        var User = {
-            IdUser: -1,          
-            Login: $scope.Login,
-            Email: "",
-            Password: $scope.Password
-        };
-
-        var promisePost = UserService.postLogin(User);
-        promisePost.then(function (t) {
-
-            if (t.data.IdUser > 0) {
-
-                var element = angular.element('.popin');
-                element.removeClass('displayed');
-
-
-
-                $scope.badPassWord = false;
-                $scope.IdUser = t.data.IdUser;
-                $scope.Email = t.data.Email;
-                $scope.Password = t.data.Password;
-                $scope.Login = t.data.Login;
-
-                Session.create(t.data);
-            }
-            else
-                $scope.badPassWord = true;
-        }, function (e) {
-            console.log("Error " + e);
-            $scope.badPassWord = true;
-        });
-
-    }
-
-
-    // User LogOut
-    $scope.logOut = function () {
-        if (Session.IdUser != null) {
-            Session.destroy(); 
-        }
     }
 
 

@@ -90,7 +90,8 @@
                     <div class="hr mb2"></div>
                 </div>
                 <div class="col-xs-12 ac">
-                    <button type="button" class="btn btn_color3 recette_save" ng-click="save()" ><span class="glyphicon glyphicon-ok mr0"></span><span>Valider ma recette</span></button>
+                    <button type="button" ng-show="IsConnected" class="btn btn_color3 recette_save" ng-click="save()" ><span class="glyphicon glyphicon-ok mr0"></span><span>Valider ma recette</span></button>
+                    <span ng-show="!IsConnected">>Log in First</span>
                 </div>
                 <!-- Afficher au clic sur "valider ma recette" lorsque tout s'est bien déroulé -->
                 <div class="col-xs-12" ng-show="recipeAdded">

@@ -1,9 +1,21 @@
-﻿NgCookingRecipeCat.controller('RecipeCategoryController', ['RecipeCategoryService']);
+﻿NgCookingRecipeCat.controller('RecipeCategoryController', ['RecipeCategoryService', 'cookies']);
 
-NgCookingRecipeCat.controller('RecipeCategoryController', function ($scope, RecipeCategoryService) {
+NgCookingRecipeCat.controller('RecipeCategoryController', function ($scope, RecipeCategoryService,Session,$cookies) {
 
     $scope.IsNew = 1;
+    $scope.Connected = false;
+    $scope.badPassWord = false;
+    $scope.IdUser = -1;
 
+    var Curr_SessUser_IdUser = $cookies.get('Session_IdUser');
+
+    if (Curr_SessUser_IdUser) {
+        $scope.IdUser = Curr_SessUser_IdUser;
+        $scope.ProfileLink = 'http://localhost:51312/User/Detail/' + $scope.IdUser;
+        $scope.Connected = true;
+    }
+    else
+        $scope.ProfileLink = 'http://localhost:51312/User/Detail/List/'
     getData();
 
     // Load all RecipeCategories

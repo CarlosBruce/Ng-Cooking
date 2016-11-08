@@ -1,7 +1,26 @@
 ﻿
-NgCookingRecipe.controller('RecipeController', ['location', 'RecipeService', 'RecipeCategoryService', 'UserService', 'IngredientCategoryService', 'sce']);
+NgCookingRecipe.controller('RecipeController', ['location', 'RecipeService', 'RecipeCategoryService', 'UserService', 'IngredientCategoryService', 'sce', 'authService']);
 
-NgCookingRecipe.controller('RecipeController', function ($scope, $location, RecipeService, RecipeCategoryService, UserService, IngredientCategoryService, $sce) {
+NgCookingRecipe.controller('RecipeController', function ($scope, $location, RecipeService, RecipeCategoryService, UserService, IngredientCategoryService, $sce, authService) {
+
+    $scope.ConnectedUser = authService.currentUser();
+
+    if ($scope.ConnectedUser == null)
+        $scope.IsConnected = false;
+    else
+        $scope.IsConnected = true;
+
+
+    authService.subscribe($scope, function somethingChanged() {
+
+        $scope.ConnectedUser = authService.currentUser();
+
+        if ( $scope.ConnectedUser == null)
+            $scope.IsConnected = false;
+        else
+            $scope.IsConnected = true;
+    });
+
     $scope.IsNew = 1;
     $scope.IngredientList = [];
     $scope.Ingredients = [];
@@ -9,8 +28,8 @@ NgCookingRecipe.controller('RecipeController', function ($scope, $location, Reci
     $scope.SelectedIngredient = "";
     $scope.Rate = 0;
     $scope.rateValue = 0;
-
-    $scope.$on('rateEvent', function (event, myData) { alert(myData); })
+    $scope.IdUser = -1;
+    $scope.Connected = false;
 
     var urlarray = $location.absUrl().split("/");
     if (urlarray.length > 0 && $location.absUrl().includes("Detail")) {
@@ -243,8 +262,7 @@ NgCookingRecipe.controller('RecipeController', function ($scope, $location, Reci
     $scope.saveRate = function () {
         var RecipeRate = {
             IdRecipe: $scope.IdRecipe,
-            //IdUser: $scope.IdUser,
-            IdUser: 14,
+            IdUser: $scope.ConnectedUser.IdUser,
             Rate: $scope.rateValue,
             Title: $scope.Title,
             Comment: $scope.Comment
@@ -252,7 +270,9 @@ NgCookingRecipe.controller('RecipeController', function ($scope, $location, Reci
 
             var promisePost = RecipeService.postRate(RecipeRate);
             promisePost.then(function (t) {
+                RecipeRate.User = $scope.ConnectedUser;
                 $scope.RecipeRates.push(RecipeRate);
+                
             }, function (e) {
                 console.log("Error " + e);
             });          
@@ -269,12 +289,12 @@ NgCookingRecipe.controller('RecipeController', function ($scope, $location, Reci
             UrlRecipePicture: $scope.UrlRecipePicture,
             Name: $scope.Name,
             Preparation: $scope.Preparation,
-            IdUser: $scope.User,
+            IdUser: $scope.ConnectedUser.IdUser,
             Ingredients: $scope.Ingredients
         };
 
         if ($scope.IsNew === 1) {
-            Recipe.IdUser = 14;
+            Recipe.IdUser = u.IdUser;
             var promisePost = RecipeService.post(Recipe);
             promisePost.then(function (t) {
                 $scope.recipeAdded = true;

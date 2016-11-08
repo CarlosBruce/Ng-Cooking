@@ -1,10 +1,27 @@
-﻿NgCookingIngredient.controller('IngredientController', ['IngredientService', 'IngredientCategoryService']);
+﻿NgCookingIngredient.controller('IngredientController', ['IngredientService', 'IngredientCategoryService', 'authService']);
 
-NgCookingIngredient.controller('IngredientController', function ($scope, IngredientService, IngredientCategoryService) {
+NgCookingIngredient.controller('IngredientController', function ($scope, IngredientService, IngredientCategoryService, authService) {
+
+    $scope.ConnectedUser = authService.currentUser();
+
     $scope.IsNew = 1;
+
+
+    authService.subscribe($scope, function somethingChanged() {
+        $scope.ConnectedUser = authService.currentUser();
+
+        if ($scope.ConnectedUser == null)
+            $scope.IsConnected = false;
+        else
+            $scope.IsConnected = true;
+    });
+
 
     getData();
     getIngredientCategories();
+    $scope.Connected = false;
+    $scope.badPassWord = false;
+    $scope.IdUser = -1;
 
     $scope.byRange = function (fieldName, minValue, maxValue) {
         if (minValue === undefined) minValue = 0;
