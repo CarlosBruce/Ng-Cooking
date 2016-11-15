@@ -61,8 +61,11 @@ C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\System.Web.WebPage
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\System.Web.WebPages.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\System.Web.WebPages.Razor.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Unity.WebApi.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\WebApi.OutputCache.Core.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\WebApi.OutputCache.V2.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\WebGrease.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Dapper.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Enyim.Caching.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Cooking.Entities.pdb
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Cooking.Repository.pdb
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Cooking.Service.pdb
@@ -106,6 +109,8 @@ C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Microsoft.Owin.Sec
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\System.Web.Http.Owin.xml
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Dapper.xml
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Enyim.Caching.pdb
+C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\Enyim.Caching.xml
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\fr\System.Net.Http.Formatting.resources.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\fr\System.Web.Helpers.resources.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\CookingWebAPI\bin\fr\System.Web.Http.resources.dll

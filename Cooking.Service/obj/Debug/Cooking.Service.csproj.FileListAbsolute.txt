@@ -3,9 +3,12 @@ C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Cooking.Se
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Cooking.Entities.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Cooking.Repository.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Dapper.dll
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Enyim.Caching.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Cooking.Entities.pdb
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Cooking.Repository.pdb
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Dapper.xml
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Enyim.Caching.pdb
+C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\bin\Debug\Enyim.Caching.xml
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\obj\Debug\Cooking.Service.csprojResolveAssemblyReference.cache
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\obj\Debug\Cooking.Service.dll
 C:\Users\C17 Developer\Repos\CookingWebsite\Cooking.Service\obj\Debug\Cooking.Service.pdb

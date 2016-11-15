@@ -1,5 +1,6 @@
 ﻿using Cooking.Entities;
 using Cooking.Service;
+using CookingWebAPI.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace CookingWebAPI.Controllers
         }
 
         [HttpGet]
+        [WebApiOutputCache(0, 0, false)]
         public HttpResponseMessage Get( int id )
         {
             HttpResponseMessage response = new HttpResponseMessage();
@@ -39,6 +41,7 @@ namespace CookingWebAPI.Controllers
         }
 
         [HttpGet]
+        [WebApiOutputCache(120, 60, false)]
         public HttpResponseMessage Get()
         {
             HttpResponseMessage response = new HttpResponseMessage();
@@ -56,6 +59,7 @@ namespace CookingWebAPI.Controllers
         }
 
         [HttpPost]
+        [WebApiOutputCache(0, 0, false)]
         public HttpResponseMessage Post( [FromBody]Recipe r )
         {
             HttpResponseMessage response = new HttpResponseMessage();
@@ -69,6 +73,8 @@ namespace CookingWebAPI.Controllers
             {
                 response = Request.CreateResponse<Exception>( HttpStatusCode.InternalServerError, e );
             }
+
+
             return response;
         }
     }

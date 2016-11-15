@@ -36,8 +36,8 @@ NgCookingUser.controller('UserController', function ($scope, $location, UserServ
 
     //User Page Filter
     $scope.UserFilterOptions = [
-       { "Description": "Ordre alphabétique (A->A)", "Value": "-Login" },
-       { "Description": "Ordre alphabétique (Z->A)", "Value": "+Login" },
+       { "Description": "Ordre alphabétique (A->A)", "Value": "+Login" },
+       { "Description": "Ordre alphabétique (Z->A)", "Value": "-Login" },
        { "Description": "Les mieux notés d'abord", "Value": "-AverageRate" },
        { "Description": "Les moins bien notés d'abord", "Value": "+AverageRate" },
        { "Description": "Les plus productifs d'abord", "Value": "-TotalRecipe" },
@@ -56,7 +56,7 @@ NgCookingUser.controller('UserController', function ($scope, $location, UserServ
                 for (var i2 = 0; i2 < $scope.Users[i].RecipeRates.length; i2++) {
                     $scope.Users[i].AverageRate += $scope.Users[i].RecipeRates[i2].Rate;
                 }
-                $scope.Users[i].AverageRate = $scope.Users[i].AverageRate / $scope.Users[i].RecipeRates.length;
+                $scope.Users[i].AverageRate =  Math.round($scope.Users[i].AverageRate / $scope.Users[i].RecipeRates.length);
             }
 
         },
